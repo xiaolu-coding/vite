@@ -7,6 +7,8 @@ import path from "path"
 // pnpm i autoprefixer -D 
 // postCss插件
 import autoprefixer from 'autoprefixer';
+// windiCss插件
+import windi from "vite-plugin-windicss"
 
 // 全局 scss 文件的路径
 // 用 normalizePath 解决 window 下的路径问题
@@ -14,22 +16,25 @@ const variablePath = normalizePath(path.resolve('./src/variable.scss'));
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react({
-     babel: {
-        // 加入 babel 插件
-        // 以下插件包都需要提前安装
-        // 当然，通过这个配置你也可以添加其它的 Babel 插件
-        plugins: [
-          // 适配 styled-component
-          "babel-plugin-styled-components",
-          // 适配 emotion
-          "@emotion/babel-plugin"
-        ]
-      },
-      // 注意: 对于 emotion，需要单独加上这个配置
-      // 通过 `@emotion/react` 包编译 emotion 中的特殊 jsx 语法
-      jsxImportSource: "@emotion/react"
-  })],
+  plugins: [
+    react({
+      // babel: {
+      //   // 加入 babel 插件
+      //   // 以下插件包都需要提前安装
+      //   // 当然，通过这个配置你也可以添加其它的 Babel 插件
+      //   plugins: [
+      //     // 适配 styled-component
+      //     "babel-plugin-styled-components",
+      //     // 适配 emotion
+      //     "@emotion/babel-plugin",
+      //   ],
+      // },
+      // // 注意: 对于 emotion，需要单独加上这个配置
+      // // 通过 `@emotion/react` 包编译 emotion 中的特殊 jsx 语法
+      // jsxImportSource: "@emotion/react",
+    }),
+    windi(),
+  ],
   // root: path.join(__dirname, 'src'),
   build: {
     manifest: true,
