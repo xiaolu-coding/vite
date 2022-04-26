@@ -87,3 +87,45 @@ function showB() {
 1. 模块变量相当于在全局声明和定义，会有变量名冲突的问题。比如 module-b 可能也存在data变量，这就会与 module-a 中的变量冲突。
 2. 由于变量都在全局定义，我们很难知道某个变量到底属于哪些模块，因此也给调试带来了困难。
 3. 无法清晰地管理模块之间的依赖关系和加载顺序。假如module-a依赖module-b，那么上述 HTML 的 script 执行顺序需要手动调整，不然可能会产生运行时错误。
+
+
+## ##命名空间
+```javascript
+// module-a.js
+window.moduleA = {
+  data: "moduleA",
+  method: function () {
+    console.log("execute A's method");
+  },
+};
+```
+```javascript
+// module-b.js
+window.moduleB = {
+  data: "moduleB",
+  method: function () {
+    console.log("execute B's method");
+  },
+};
+```
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./module-a.js"></script>
+    <script src="./module-b.js"></script>
+    <script>
+      // 此时 window 上已经绑定了 moduleA 和 moduleB
+      console.log(moduleA.data);
+      moduleB.method();
+    </script>
+  </body>
+</html>
+```
+这样一来，每个变量都有自己专属的命名空间，我们可以清楚地知道某个变量到底属于哪个模块，同时也避免全局变量命名的问题
