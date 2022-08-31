@@ -197,3 +197,7 @@ Vite 所倡导的no-bundle理念的真正含义: 利用浏览器原生 ES 模块
 1. 删除node_modules/.vite目录。
 2. 在 Vite 配置文件中，将server.force设为true。
 3. 命令行执行npx vite --force或者npx vite optimize。
+
+# include
+
+将一些按需加载的放在includes中，因为按需加载是动态加载，有时候不会被Vite预构建识别，因此会发生二次预构建，需要刷新页面并重新请求所有模块，因此要避免二次预构建，因此要把按需加载的依赖都放进includes数组中
