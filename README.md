@@ -189,3 +189,11 @@ Vite 所倡导的no-bundle理念的真正含义: 利用浏览器原生 ES 模块
 1. package.json 的 dependencies 字段
 2. 各种包管理器的 lock 文件
 3. optimizeDeps 配置内容
+
+# 手动开启预构建
+
+而少数场景下我们不希望用本地的缓存文件，比如需要调试某个包的预构建结果，我推荐使用下面任意一种方法清除缓存，还有手动开启预构建:
+
+1. 删除node_modules/.vite目录。
+2. 在 Vite 配置文件中，将server.force设为true。
+3. 命令行执行npx vite --force或者npx vite optimize。
