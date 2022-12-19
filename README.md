@@ -208,3 +208,7 @@ Vite 所倡导的no-bundle理念的真正含义: 利用浏览器原生 ES 模块
 Esbuild 作为构建的性能利器，Vite 利用其 Bundler 的功能进行依赖预构建，用其 Transformer 的能力进行 TS 和 JSX 文件的转译，也用到它的压缩能力进行 JS 和 CSS 代码的压缩。
 
 在 Vite 当中，无论是插件机制、还是底层的打包手段，都基于 Rollup 来实现，可以说 Vite 是对于 Rollup 一种场景化的深度扩展，将 Rollup 从传统的 JS 库打包场景扩展至完整 Web 应用打包，然后结合开发阶段 no-bundle 的核心竞争力，打造出了自己独具一格的技术品牌。
+
+
+# RollUP
+
