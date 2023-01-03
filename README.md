@@ -245,3 +245,11 @@ Sequential 指串行的钩子函数。这种 Hook 往往适用于插件间处理
 ### 4. First
 
 如果有多个插件实现了这个 Hook，那么 Hook 将依次运行，直到返回一个非 null 或非 undefined 的值为止。比较典型的 Hook 是 resolveId，一旦有插件的 resolveId 返回了一个路径，将停止执行后续插件的 resolveId 逻辑。
+
+# Rollup插件总结
+
+Rollup 的插件开发整体上是非常简洁和灵活的，总结为以下几个方面:
+
+1. 插件逻辑集中管理
+2. 插件 API 简洁，符合直觉
+3. 插件间的互相调用
