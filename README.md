@@ -253,3 +253,27 @@ Rollup 的插件开发整体上是非常简洁和灵活的，总结为以下几�
 1. 插件逻辑集中管理
 2. 插件 API 简洁，符合直觉
 3. 插件间的互相调用
+
+# Vite插件
+
+一般情况下要考虑到外部传参，因此实现一个返回插件对象的工厂函数，如下代码所示：
+
+```typescript
+// myPlugin.js
+export function myVitePlugin(options) {
+  console.log(options)
+  return {
+    name: 'vite-plugin-xxx',
+    load(id) {
+      // 在钩子逻辑中可以通过闭包访问外部的 options 传参
+    }
+  }
+}
+
+// 使用方式
+// vite.config.ts
+import { myVitePlugin } from './myVitePlugin';
+export default {
+  plugins: [myVitePlugin({ /* 给插件传参 */ })]
+}
+```
