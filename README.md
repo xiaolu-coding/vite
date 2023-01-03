@@ -277,3 +277,26 @@ export default {
   plugins: [myVitePlugin({ /* 给插件传参 */ })]
 }
 ```
+
+## 给配置再加点料: config
+
+Vite 在读取完配置文件（即vite.config.ts）之后，会拿到用户导出的配置对象，然后执行 config 钩子。在这个钩子里面，你可以对配置文件导出的对象进行自定义的操作，如下代码所示:
+
+```typescript
+// 返回部分配置（推荐）
+const editConfigPlugin = () => ({
+  name: 'vite-plugin-modify-config',
+  config: () => ({
+    alias: {
+      react: require.resolve('react')
+    }
+  })
+})
+```
+
+
+1. config: 用来进一步修改配置。
+2. configResolved: 用来记录最终的配置信息。
+3. configureServer: 用来获取 Vite Dev Server 实例，添加中间件。
+4. transformIndexHtml: 用来转换 HTML 的内容。
+5. handleHotUpdate: 用来进行热更新模块的过滤，或者进行自定义的热更新处理。
